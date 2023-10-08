@@ -9,9 +9,16 @@ const createJestConfig = nextJest({
 const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   testEnvironment: 'jest-environment-jsdom',
-  transformIgnorePatterns: ['node_modules/(?!@engi.network/.*)'],
-  testTimeout: 60000
+  testTimeout: 60000,
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-module.exports = createJestConfig(customJestConfig)
+module.exports = async function() {
+  const makeConfig = await createJestConfig(customJestConfig)
+  const finalJestConfig = await makeConfig()
+
+  // remove Next.js default module mapper to allow design-matcher to use its bundle asset files
+  delete finalJestConfig.moduleNameMapper['^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp)$']
+
+  return finalJestConfig;
+}
