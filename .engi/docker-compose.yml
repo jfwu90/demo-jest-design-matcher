@@ -1,0 +1,39 @@
+version: "3.9"
+
+x-test-framework: jest
+
+x-service:
+  &service
+  build:
+    context: ..
+    dockerfile: .engi/Dockerfile.tests
+  volumes:
+    - type: volume
+      source: output
+      target: $ENGI_WORKING_DIR
+
+services:
+  storybook:
+    command: npm run storybook
+    <<: *service
+    ports:
+      - 6006
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6006"]
+      interval: 15s
+      timeout: 5s
+      retries: 6
+      start_period: 120s
+      start_interval: 15s
+  tests:
+    command: /bin/sh -c "jest --json | tee $ENGI_WORKING_DIR/jest.json"
+    <<: *service
+    environment:
+      - STORYBOOK_HOSTNAME=storybook
+    depends_on:
+      storybook:
+        condition: service_healthy
+volumes:
+  output:
+    external: true
+    name: $ENGI_WORKING_VOL
