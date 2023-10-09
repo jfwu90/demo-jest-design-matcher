@@ -6,7 +6,7 @@ x-service:
   &service
   build:
     context: ..
-    dockerfile: .engi/Dockerfile.tests
+    dockerfile: .engi/tests.Dockerfile
   volumes:
     - type: volume
       source: output
