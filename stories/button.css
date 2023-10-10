@@ -11,6 +11,13 @@
   color: white;
   background-color: #1ea7fd;
 }
+.storybook-button--icon {
+  display: flex;
+  align-items: center;
+}
+.storybook-button--icon svg {
+  margin-right: 6px;
+}
 .storybook-button--secondary {
   color: #333;
   background-color: transparent;
