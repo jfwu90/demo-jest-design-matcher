@@ -25,6 +25,14 @@ export const Primary: Story = {
   },
 };
 
+export const Icon: Story = {
+  args: {
+    primary: true,
+    label: 'Button',
+    icon: 'eigenlayer'
+  },
+};
+
 export const Secondary: Story = {
   args: {
     label: 'Button',

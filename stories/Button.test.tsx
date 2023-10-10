@@ -13,5 +13,15 @@ describe('Button', () => {
 
     await expect(buttonDesignTest).toMatchDesign();
   })
+
+  it('renders the primary button with icon', async () => {
+    let buttonIconDesignTest = {
+      component: "Button",
+      story: "Icon",
+      design: "designs/primary-button-icon.png",
+    }
+
+    await expect(buttonIconDesignTest).toMatchDesign();
+  })
 })
 
