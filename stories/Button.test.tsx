@@ -11,17 +11,19 @@ describe('Button', () => {
       design: "designs/primary-button.png",
     }
 
-    await expect(buttonDesignTest).toMatchDesign();
+    // await expect(buttonDesignTest).toMatchDesign();
+    expect(true).toBe(false);
   })
-
+  
   it('renders the primary button with icon', async () => {
     let buttonIconDesignTest = {
       component: "Button",
       story: "Icon",
       design: "designs/primary-button-icon.png",
     }
-
-    await expect(buttonIconDesignTest).toMatchDesign();
+    
+    // await expect(buttonIconDesignTest).toMatchDesign();
+    expect(true).toBe(false);
   })
 })
 
